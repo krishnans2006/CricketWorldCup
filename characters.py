@@ -5,7 +5,7 @@ class Player:
 	imgs = [
 		scale(load("player1.png"), (128, 128)),
 		scale(load("player2.png"), (128, 128)),
-		scale(load("player3.png"), (64, 64))
+		scale(load("player3.png"), (128, 128))
 	]
 
 	def __init__(self, x, y):
