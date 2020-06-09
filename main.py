@@ -1,6 +1,6 @@
 # Made by Krishnan Shankar and Shivam Suri
 # Enjoy!
-
+# Shivam presents this part
 import pygame
 from characters import Player  # , Bowler
 
@@ -15,7 +15,7 @@ pygame.display.set_caption("Cricket Game")
 BG = pygame.transform.scale(pygame.image.load("bg.jpg"), (W, H))
 PITCH = pygame.transform.scale(pygame.image.load("pitch.png"), (300, 200))
 
-
+# Krishna presents this part
 def redraw(win, player):
 	win.blit(BG, (0, 0))
 	win.blit(PITCH, (250, 400))
@@ -28,7 +28,7 @@ def redraw(win, player):
 	pygame.draw.line(win, (0, 0, 0), (400, 550), (418, 550), 4)
 	pygame.display.flip()
 
-
+# Shivam presents this part
 def main():
 	player = Player(290, 460)
 	while True:
@@ -41,6 +41,5 @@ def main():
 					player.swing()
 		redraw(win, player)
 		clock.tick(30)
-
 if __name__ == "__main__":
 	main()
