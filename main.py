@@ -1,6 +1,8 @@
 # Made by Krishnan Shankar and Shivam Suri
 # Enjoy!
 # Shivam presents this part.
+import random
+
 import pygame
 
 from classes import Player, Bowler, Ball
@@ -17,25 +19,22 @@ BG = pygame.transform.scale(pygame.image.load("bg.jpg"), (W, H))
 PITCH = pygame.transform.scale(pygame.image.load("pitch.png"), (300, 200))
 TIME_SINCE_BALL_DISPLAYED = 0
 
+
 # Krishna presents this part.
+def choose_random(player_status):
+	if player_status == "swing1":
+		return random.choice([1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 4, 4, 4, 4, 6])
+	elif player_status == "swing2":
+		return random.choice([1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 4, 4, 4, 4, 4, 6, 6, 6, 6, 6])
+
+
 def redraw(win, player, bowler, ball):
-	global TIME_SINCE_BALL_DISPLAYED
 	win.blit(BG, (0, 0))
 	win.blit(PITCH, (250, 400))
-	player.update()
 	player.draw(win)
-	bowling = bowler.update()
 	bowler.draw(win)
-	if bowling == "balldisp":
-		TIME_SINCE_BALL_DISPLAYED = 1
-		ball.start_move()
-	if TIME_SINCE_BALL_DISPLAYED and TIME_SINCE_BALL_DISPLAYED > 0:
-		keep_moving = ball.continue_move()
-		if keep_moving:
-			TIME_SINCE_BALL_DISPLAYED += 1
-			ball.draw(win)
-		else:
-			TIME_SINCE_BALL_DISPLAYED = 0
+	if ball:
+		ball.draw(win)
 	pygame.draw.line(win, (0, 0, 0), (379, 555), (379, 597), 6)
 	pygame.draw.line(win, (0, 0, 0), (399, 550), (399, 597), 6)
 	pygame.draw.line(win, (0, 0, 0), (419, 555), (419, 597), 6)
@@ -45,6 +44,7 @@ def redraw(win, player, bowler, ball):
 
 # Shivam presents this part.
 def main():
+	global TIME_SINCE_BALL_DISPLAYED
 	player = Player(290, 460)
 	bowler = Bowler(370, 330)
 	ball = Ball(420, 340)
@@ -58,7 +58,30 @@ def main():
 					player.swing()
 				if event.key == pygame.K_p:
 					bowler.bowl()
-		redraw(win, player, bowler, ball)
+		player.update()
+		bowling = bowler.update()
+		player_status = None
+		if ball.y == 540:
+			if player.swinging and player.swing_cnt < player.swing_time // 2:
+				player_status = "swing1"
+			elif player.swinging:
+				player_status = "swing2"
+		score = choose_random(player_status)
+		print(score if score else "")
+		if bowling == "balldisp":
+			TIME_SINCE_BALL_DISPLAYED = 1
+			ball.start_move()
+		ball_displayed = False
+		if TIME_SINCE_BALL_DISPLAYED and TIME_SINCE_BALL_DISPLAYED > 0:
+			keep_moving = ball.continue_move()
+			if keep_moving:
+				TIME_SINCE_BALL_DISPLAYED += 1
+				ball_displayed = True
+				redraw(win, player, bowler, ball)
+			else:
+				TIME_SINCE_BALL_DISPLAYED = 0
+		if not ball_displayed:
+			redraw(win, player, bowler, None)
 		clock.tick(30)
 
 

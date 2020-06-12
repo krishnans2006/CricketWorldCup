@@ -22,7 +22,7 @@ class Player:
 	def update(self):
 		if self.swinging:
 			self.swing_cnt += 1
-		if self.swing_cnt == self.swing_time / 2:
+		if self.swing_cnt == self.swing_time // 2:
 			self.img = self.imgs[2]
 			return "balldisp"
 		if self.swing_cnt == self.swing_time:
