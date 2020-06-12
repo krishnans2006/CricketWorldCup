@@ -15,6 +15,8 @@ W = 800
 H = 600
 win = pygame.display.set_mode((W, H))
 pygame.display.set_caption("Cricket Game")
+font = pygame.font.SysFont("timesnewroman", 40, True)
+
 BG = pygame.transform.scale(pygame.image.load("bg.jpg"), (W, H))
 PITCH = pygame.transform.scale(pygame.image.load("pitch.png"), (300, 200))
 TIME_SINCE_BALL_DISPLAYED = 0
@@ -30,7 +32,7 @@ def choose_random(player_status):
 
 
 # Shivam presents this part
-def redraw(win, player, bowler, ball):
+def redraw(win, player, bowler, ball, scoretext):
     win.blit(BG, (0, 0))
     win.blit(PITCH, (250, 400))
     player.draw(win)
@@ -42,6 +44,8 @@ def redraw(win, player, bowler, ball):
     pygame.draw.line(win, (0, 0, 0), (419, 555), (419, 597), 6)
     pygame.draw.line(win, (0, 0, 0), (380, 550), (398, 550), 4)
     pygame.draw.line(win, (0, 0, 0), (400, 550), (418, 550), 4)
+    text = font.render(scoretext, 1, (255, 255, 255))
+    win.blit(text, (W / 2 - text.get_width() / 2, 50))
     pygame.display.flip()
 
 
@@ -51,6 +55,7 @@ def main():
     player = Player(290, 460)
     bowler = Bowler(370, 330)
     ball = Ball(420, 340)
+    scoretext = ""
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -72,8 +77,7 @@ def main():
         score = choose_random(player_status)
         if score:
             TOTAL_SCORE += score
-            print(
-                f"You hit a {'single' if score == 1 else ('double' if score == 2 else score)}! Your total score is {TOTAL_SCORE}")
+            scoretext = f"You hit a {'single' if score == 1 else ('double' if score == 2 else score)}! Your total score is {TOTAL_SCORE}"
         if bowling == "balldisp":
             TIME_SINCE_BALL_DISPLAYED = 1
             ball.start_move()
@@ -83,11 +87,11 @@ def main():
             if keep_moving:
                 TIME_SINCE_BALL_DISPLAYED += 1
                 ball_displayed = True
-                redraw(win, player, bowler, ball)
+                redraw(win, player, bowler, ball, scoretext)
             else:
                 TIME_SINCE_BALL_DISPLAYED = 0
         if not ball_displayed:
-            redraw(win, player, bowler, None)
+            redraw(win, player, bowler, None, scoretext)
         clock.tick(30)
 
 
