@@ -18,6 +18,8 @@ pygame.display.set_caption("Cricket Game")
 BG = pygame.transform.scale(pygame.image.load("bg.jpg"), (W, H))
 PITCH = pygame.transform.scale(pygame.image.load("pitch.png"), (300, 200))
 TIME_SINCE_BALL_DISPLAYED = 0
+TOTAL_SCORE = 0
+
 
 
 # Krishna presents this part.
@@ -44,7 +46,7 @@ def redraw(win, player, bowler, ball):
 
 # Shivam presents this part.
 def main():
-	global TIME_SINCE_BALL_DISPLAYED
+	global TIME_SINCE_BALL_DISPLAYED, TOTAL_SCORE
 	player = Player(290, 460)
 	bowler = Bowler(370, 330)
 	ball = Ball(420, 340)
@@ -68,6 +70,7 @@ def main():
 				player_status = "swing2"
 		score = choose_random(player_status)
 		if score:
+			TOTAL_SCORE += score
 			print(score)
 		if bowling == "balldisp":
 			TIME_SINCE_BALL_DISPLAYED = 1
