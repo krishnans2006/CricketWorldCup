@@ -52,7 +52,12 @@ class Bowler:
 	def __init__(self, x, y):
 		self.x = x
 		self.y = y
+		self.bowling = False
+		self.bowl_cnt = None
+		self.img = self.imgs[0]
 
+	def draw(self, win):
+		win.blit(self.img, (self.x, self.y))
 
 class Ball:
 	imgs = [load("ball1.png"), load("ball2.png")]
