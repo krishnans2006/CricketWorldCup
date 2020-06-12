@@ -48,3 +48,8 @@ class Bowler:
 		load("bowler1.png"),
 		load("bowler2.png")
 	]
+class Ball:
+	imgs = [
+		 load("ball1.png")
+		 load("ball2.png")
+	]
