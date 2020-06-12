@@ -17,7 +17,7 @@ BG = pygame.transform.scale(pygame.image.load("bg.jpg"), (W, H))
 PITCH = pygame.transform.scale(pygame.image.load("pitch.png"), (300, 200))
 
 # Krishna presents this part.
-def redraw(win, player, bowler):
+def redraw(win, player, bowler, ball):
 	win.blit(BG, (0, 0))
 	win.blit(PITCH, (250, 400))
 	player.update()
@@ -34,6 +34,7 @@ def redraw(win, player, bowler):
 def main():
 	player = Player(290, 460)
 	bowler = Bowler(370, 330)
+	ball   = Ball(370, 330)
 	while True:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -42,7 +43,7 @@ def main():
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_SPACE:
 					player.swing()
-		redraw(win, player, bowler)
+		redraw(win, player, bowler, ball)
 		clock.tick(30)
 
 
