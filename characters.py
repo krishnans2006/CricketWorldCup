@@ -55,6 +55,21 @@ class Bowler:
 		self.bowling = False
 		self.bowl_cnt = None
 		self.img = self.imgs[0]
+		self.bowl_time = 30
+
+	def update(self):
+		if self.bowling:
+			self.bowl_cnt += 1
+		if self.bowl_cnt == self.bowl_time // 2:
+			self.img = self.imgs[1]
+		if self.bowl_cnt == self.bowl_time:
+			self.img = self.imgs[0]
+
+	def bowl(self):
+		if not self.bowling:
+			self.bowling = True
+			self.bowl_cnt = 1
+			print("Bowl!")
 
 	def draw(self, win):
 		win.blit(self.img, (self.x, self.y))
