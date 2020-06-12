@@ -33,7 +33,7 @@ def redraw(win, player, bowler):
 # Shivam presents this part.
 def main():
 	player = Player(290, 460)
-	bowler = Bowler(370, 340)
+	bowler = Bowler(370, 330)
 	while True:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
