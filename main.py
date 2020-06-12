@@ -67,7 +67,8 @@ def main():
 			elif player.swinging:
 				player_status = "swing2"
 		score = choose_random(player_status)
-		print(score if score else "")
+		if score:
+			print(score)
 		if bowling == "balldisp":
 			TIME_SINCE_BALL_DISPLAYED = 1
 			ball.start_move()
