@@ -24,8 +24,11 @@ class Player:
 			self.swing_cnt += 1
 		if self.swing_cnt == self.swing_time / 2:
 			self.img = self.imgs[2]
+			return "balldisp"
 		if self.swing_cnt == self.swing_time:
 			self.stop_swing()
+			return "endswing"
+		return None
 
 	def draw(self, win):
 		win.blit(self.img, (self.x, self.y))
