@@ -75,7 +75,7 @@ class Bowler:
 		win.blit(self.img, (self.x, self.y))
 
 class Ball:
-	imgs = [load("ball1.png"), load("ball2.png")]
+	imgs = [scale(load("ball1.png"), (64,64)), scale(load("ball2.png"), (64, 64)]
 	def __init__(self, x, y):
 		self.x = x
 		self.y = y
