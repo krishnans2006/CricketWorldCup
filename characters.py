@@ -1,7 +1,7 @@
 # Shivam does this part.
+from pygame.image import load
 from pygame.transform import scale
 
-from pygame.image import load
 
 class Player:
 	imgs = [
@@ -10,7 +10,7 @@ class Player:
 		scale(load("player3.png"), (128, 128))
 	]
 
-    # Krishna does this part.
+	# Krishna does this part.
 	def __init__(self, x, y):
 		self.x = x
 		self.y = y
