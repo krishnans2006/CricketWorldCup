@@ -3,7 +3,7 @@
 # Shivam presents this part.
 import pygame
 
-from characters import Player, Bowler, Ball
+from classes import Player, Bowler, Ball
 
 pygame.init()
 pygame.font.init()
