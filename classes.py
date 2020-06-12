@@ -94,6 +94,8 @@ class Ball:
 		self.o_y = y
 		self.y = y
 		self.img = self.imgs[0]
+		self.img_cnt = 0
+		self.img_margin = 5
 		self.move_cnt = 0
 
 	def start_move(self):
@@ -115,6 +117,10 @@ class Ball:
 	def move_ball(self, new_x, new_y):
 		self.x = new_x
 		self.y = new_y
+		self.img_cnt += 1
+		if self.img_cnt == 9:
+			self.img_cnt = 1
+		self.img = self.imgs[self.img_cnt // 5]
 
 	def draw(self, win):
 		win.blit(self.img, (self.x, self.y))
