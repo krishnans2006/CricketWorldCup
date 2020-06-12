@@ -89,9 +89,32 @@ class Ball:
 	imgs = [scale(load("ball1.png"), (12, 12)), scale(load("ball2.png"), (12, 12))]
 
 	def __init__(self, x, y):
+		self.o_x = x
 		self.x = x
+		self.o_y = y
 		self.y = y
 		self.img = self.imgs[0]
+		self.move_cnt = 0
+
+	def start_move(self):
+		self.move_cnt = 1
+
+	def continue_move(self):
+		self.move_cnt += 1
+		self.move_ball(self.x - 1, self.y + 10)
+		if self.y > 600:
+			self.end_move()
+			return False
+		return True
+
+	def end_move(self):
+		self.move_cnt = 0
+		self.x = self.o_x
+		self.y = self.o_y
+
+	def move_ball(self, new_x, new_y):
+		self.x = new_x
+		self.y = new_y
 
 	def draw(self, win):
 		win.blit(self.img, (self.x, self.y))

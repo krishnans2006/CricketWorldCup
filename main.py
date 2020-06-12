@@ -28,11 +28,14 @@ def redraw(win, player, bowler, ball):
 	bowler.draw(win)
 	if bowling == "balldisp":
 		TIME_SINCE_BALL_DISPLAYED = 1
-	if bowling == "endswing":
-		TIME_SINCE_BALL_DISPLAYED = None
+		ball.start_move()
 	if TIME_SINCE_BALL_DISPLAYED and TIME_SINCE_BALL_DISPLAYED > 0:
-		TIME_SINCE_BALL_DISPLAYED += 1
-		ball.draw(win)
+		keep_moving = ball.continue_move()
+		if keep_moving:
+			TIME_SINCE_BALL_DISPLAYED += 1
+			ball.draw(win)
+		else:
+			TIME_SINCE_BALL_DISPLAYED = 0
 	pygame.draw.line(win, (0, 0, 0), (379, 555), (379, 597), 6)
 	pygame.draw.line(win, (0, 0, 0), (399, 550), (399, 597), 6)
 	pygame.draw.line(win, (0, 0, 0), (419, 555), (419, 597), 6)
