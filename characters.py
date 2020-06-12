@@ -45,8 +45,8 @@ class Player:
 # Shivam does this part.
 class Bowler:
 	imgs = [
-		load("bowler1.png"),
-		load("bowler2.png")
+		scale(load("bowler1.png"), (128, 128)),
+		scale(load("bowler2.png"), (128, 128))
 	]
 
 	def __init__(self, x, y):
