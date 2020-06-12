@@ -43,5 +43,7 @@ def main():
 					player.swing()
 		redraw(win, player)
 		clock.tick(30)
+
+
 if __name__ == "__main__":
 	main()
