@@ -63,7 +63,12 @@ class Bowler:
 		if self.bowl_cnt == self.bowl_time // 2:
 			self.img = self.imgs[1]
 		if self.bowl_cnt == self.bowl_time:
-			self.img = self.imgs[0]
+			self.stop_bowl()
+
+	def stop_bowl(self):
+		self.bowling = False
+		self.bowl_cnt = 0
+		self.img = self.imgs[0]
 
 	def bowl(self):
 		if not self.bowling:
@@ -74,8 +79,10 @@ class Bowler:
 	def draw(self, win):
 		win.blit(self.img, (self.x, self.y))
 
+
 class Ball:
-	imgs = [scale(load("ball1.png"), (64,64)), scale(load("ball2.png"), (64, 64)]
+	imgs = [scale(load("ball1.png"), (64, 64)), scale(load("ball2.png"), (64, 64))]
+
 	def __init__(self, x, y):
 		self.x = x
 		self.y = y

@@ -23,6 +23,7 @@ def redraw(win, player, bowler, ball):
 	player.update()
 	player.draw(win)
 	bowler.draw(win)
+	bowler.update()
 	ball.draw(win)
 	pygame.draw.line(win, (0, 0, 0), (379, 555), (379, 597), 6)
 	pygame.draw.line(win, (0, 0, 0), (399, 550), (399, 597), 6)
@@ -44,6 +45,8 @@ def main():
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_SPACE:
 					player.swing()
+				if event.key == pygame.K_p:
+					bowler.bowl()
 		redraw(win, player, bowler, ball)
 		clock.tick(30)
 
