@@ -65,8 +65,10 @@ class Bowler:
 			self.bowl_cnt += 1
 		if self.bowl_cnt == self.bowl_time // 2:
 			self.img = self.imgs[1]
+			return "balldisp"
 		if self.bowl_cnt == self.bowl_time:
 			self.stop_bowl()
+			return "endswing"
 
 	def stop_bowl(self):
 		self.bowling = False

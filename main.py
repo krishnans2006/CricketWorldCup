@@ -15,7 +15,7 @@ win = pygame.display.set_mode((W, H))
 pygame.display.set_caption("Cricket Game")
 BG = pygame.transform.scale(pygame.image.load("bg.jpg"), (W, H))
 PITCH = pygame.transform.scale(pygame.image.load("pitch.png"), (300, 200))
-TIME_SINCE_BALL_DISPLAYED = None
+TIME_SINCE_BALL_DISPLAYED = 0
 
 # Krishna presents this part.
 def redraw(win, player, bowler, ball):
@@ -27,7 +27,7 @@ def redraw(win, player, bowler, ball):
 	bowling = bowler.update()
 	bowler.draw(win)
 	if bowling == "balldisp":
-		TIME_SINCE_BALL_DISPLAYED = 0
+		TIME_SINCE_BALL_DISPLAYED = 1
 	if bowling == "endswing":
 		TIME_SINCE_BALL_DISPLAYED = None
 	if TIME_SINCE_BALL_DISPLAYED and TIME_SINCE_BALL_DISPLAYED > 0:
