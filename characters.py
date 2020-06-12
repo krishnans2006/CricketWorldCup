@@ -81,7 +81,7 @@ class Bowler:
 
 
 class Ball:
-	imgs = [scale(load("ball1.png"), (64, 64)), scale(load("ball2.png"), (64, 64))]
+	imgs = [scale(load("ball1.png"), (24, 24)), scale(load("ball2.png"), (24, 24))]
 
 	def __init__(self, x, y):
 		self.x = x
